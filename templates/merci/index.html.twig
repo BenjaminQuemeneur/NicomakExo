@@ -14,12 +14,12 @@
                 <th>Destinataire</th>
                 <th>Message</th>
                 <th>Date</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for merci in mercis %}
-            //Prends les mercis dans la bdd
+            {# Prends les mercis dans la bdd #}
             <tr>
                 <td>{{ merci.id }}</td>
                 <td>{{ merci.Merci }}</td>
@@ -28,17 +28,18 @@
                 <td>{{ merci.message }}</td>
                 <td>{{ merci.date ? merci.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_merci_show', {'id': merci.id}) }}">show</a>
-                    <a href="{{ path('app_merci_edit', {'id': merci.id}) }}">edit</a>
+                    <a href="{{ path('app_merci_show', {'id': merci.id}) }}">Détail</a>
+                    <a href="{{ path('app_merci_edit', {'id': merci.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun merci existant</td>
+                {# Si aucun merci existant il affiche ceci #}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_merci_new') }}">Create new</a>
+    <a href="{{ path('app_merci_new') }}">Nouveau merci !</a>
 {% endblock %}

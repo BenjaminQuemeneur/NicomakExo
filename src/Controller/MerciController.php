@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/')]
+//Dès qu'on lance l'application renvoi sur la page index twig
 final class MerciController extends AbstractController
 {
     #[Route(name: 'app_merci_index', methods: ['GET'])]
@@ -23,6 +24,7 @@ final class MerciController extends AbstractController
     }
 
     #[Route('/new', name: 'app_merci_new', methods: ['GET', 'POST'])]
+    //Si on clique sur création d'un nouveau ca relance vers le formulaire
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $merci = new Merci();
@@ -43,6 +45,7 @@ final class MerciController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_merci_show', methods: ['GET'])]
+    //Récupère les infos d'un merci et les montre
     public function show(Merci $merci): Response
     {
         return $this->render('merci/show.html.twig', [
@@ -51,6 +54,7 @@ final class MerciController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_merci_edit', methods: ['GET', 'POST'])]
+    //Modification d'un merci déjà présent
     public function edit(Request $request, Merci $merci, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(MerciType::class, $merci);
@@ -69,6 +73,7 @@ final class MerciController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_merci_delete', methods: ['POST'])]
+    //Supprime un merci
     public function delete(Request $request, Merci $merci, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$merci->getId(), $request->getPayload()->getString('_token'))) {
