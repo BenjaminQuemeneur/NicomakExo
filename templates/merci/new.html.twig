@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Merci{% endblock %}
+
+{% block body %}
+    <h1>Create new Merci</h1>
+
+    {{ include('merci/_form.html.twig') }}
+
+    <a href="{{ path('app_merci_index') }}">back to list</a>
+{% endblock %}

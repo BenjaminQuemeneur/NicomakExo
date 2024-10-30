@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Merci{% endblock %}
+
+{% block body %}
+    <h1>Edit Merci</h1>
+
+    {{ include('merci/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_merci_index') }}">back to list</a>
+
+    {{ include('merci/_delete_form.html.twig') }}
+{% endblock %}

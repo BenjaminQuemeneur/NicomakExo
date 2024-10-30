@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Merci index{% endblock %}
+
+{% block body %}
+    <h1>Merci index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Merci</th>
+                <th>Expediteur</th>
+                <th>Destinataire</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for merci in mercis %}
+            //Prends les mercis dans la bdd
+            <tr>
+                <td>{{ merci.id }}</td>
+                <td>{{ merci.Merci }}</td>
+                <td>{{ merci.expediteur }}</td>
+                <td>{{ merci.destinataire }}</td>
+                <td>{{ merci.message }}</td>
+                <td>{{ merci.date ? merci.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_merci_show', {'id': merci.id}) }}">show</a>
+                    <a href="{{ path('app_merci_edit', {'id': merci.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_merci_new') }}">Create new</a>
+{% endblock %}
